@@ -1,11 +1,15 @@
 #include <iostream>
 #include <ctime>
 #include <queue>
+#include <algorithm>
 
 #include "dynamicArray.h"
 #include "enemy.h"
-#include "priorityQueue.h"
+#include "heapSort.h"
 #include "game.h"
+#include "priorityQueue.h"
+
+const long ARRAY_SIZE = 1000000;
 
 bool operator==(const Enemy &firstEnemy, const Enemy &secondEnemy);
 bool operator<(const Enemy &firstEnemy, const Enemy &secondEnemy);
@@ -13,16 +17,17 @@ bool operator>(const Enemy &firstEnemy, const Enemy &secondEnemy);
 
 template <typename T>
 float testPriorityQueueSpeed(T &&priorityQueue);
-
 bool testPriorityQueue();
+void testSort();
 
 int main()
 {
   srand(time(NULL));
 
+  testSort();
   // Game().start();
 
-  testPriorityQueue();
+  // testPriorityQueue();
 }
 
 bool testPriorityQueue()
@@ -94,6 +99,37 @@ float testPriorityQueueSpeed(T &&priorityQueue)
   clock_t timeEnd = clock();
   float time = (float(timeEnd - timeStart)) / CLOCKS_PER_SEC;
   return time;
+}
+
+void testSort()
+{
+  int *toSort = new int[ARRAY_SIZE];
+
+  for (int i = 0; i < ARRAY_SIZE; i++)
+  {
+    toSort[i] = rand() % ARRAY_SIZE;
+  }
+
+  clock_t myStart = clock();
+  heapSort(toSort, ARRAY_SIZE);
+  clock_t myEnd = clock();
+
+  float myTime = (float(myEnd - myStart)) / CLOCKS_PER_SEC;
+
+  std::cout << "MY TIME: " << myTime << std::endl;
+
+  for (int i = 0; i < ARRAY_SIZE; i++)
+  {
+    toSort[i] = rand() % ARRAY_SIZE;
+  }
+
+  clock_t stlStart = clock();
+  std::sort(toSort, toSort + ARRAY_SIZE);
+  clock_t stlEnd = clock();
+
+  float stlTime = (float(stlEnd - stlStart)) / CLOCKS_PER_SEC;
+
+  std::cout << "STL's TIME: " << stlTime << std::endl;
 }
 
 bool operator==(const Enemy &firstEnemy, const Enemy &secondEnemy)
