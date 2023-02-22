@@ -38,6 +38,11 @@ public:
     siftDown(0);
   }
 
+  T get(int index)
+  {
+    return heap->operator[](index);
+  }
+
   bool isEmpty() const
   {
     return heap->isEmpty();
