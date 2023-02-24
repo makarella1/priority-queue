@@ -1,3 +1,5 @@
+#pragma once
+
 #include "priorityQueue.h"
 
 template <typename T>
