@@ -76,7 +76,11 @@ public:
       case Turns::PRINT_ENEMIES:
         for (int i = 0; i < priorityQueue.size(); i++)
         {
+          std::cout << "#" << i << " enemy's damage is: " << priorityQueue.get(i).damage << std::endl;
+          std::cout << "#" << i << " enemy's hp is: " << priorityQueue.get(i).hp << std::endl;
           std::cout << "#" << i << " enemy's skill is: " << priorityQueue.get(i).skill << std::endl;
+
+          std::cout << "\n";
         }
 
         std::cout << "\n";

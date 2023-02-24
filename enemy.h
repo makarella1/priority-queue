@@ -2,15 +2,19 @@
 
 #include <cstdlib>
 
-const int MIN_SKILL = 1;
-const int MAX_SKILL = 10;
+const int MIN_VALUE = 1;
+const int MAX_VALUE = 100;
 
 struct Enemy
 {
   int skill;
+  int damage;
+  int hp;
 
   Enemy()
   {
-    skill = rand() % (MAX_SKILL - MIN_SKILL) + MIN_SKILL;
+    skill = rand() % (MAX_VALUE - MIN_VALUE) + MIN_VALUE;
+    damage = rand() % (MAX_VALUE - MIN_VALUE) + MIN_VALUE;
+    hp = rand() % (MAX_VALUE - MIN_VALUE) + MIN_VALUE;
   };
 };

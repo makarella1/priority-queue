@@ -25,9 +25,7 @@ int main()
   srand(time(NULL));
 
   testSort();
-  // Game().start();
-
-  // testPriorityQueue();
+  testPriorityQueue();
 }
 
 bool testPriorityQueue()
@@ -134,15 +132,33 @@ void testSort()
 
 bool operator==(const Enemy &firstEnemy, const Enemy &secondEnemy)
 {
-  return firstEnemy.skill == secondEnemy.skill;
+  return firstEnemy.skill == secondEnemy.skill && firstEnemy.damage == secondEnemy.damage && firstEnemy.hp == secondEnemy.hp;
 }
 
 bool operator<(const Enemy &firstEnemy, const Enemy &secondEnemy)
 {
+  if (firstEnemy.damage != secondEnemy.damage)
+  {
+    return firstEnemy.damage < secondEnemy.damage;
+  }
+  else if (firstEnemy.hp != secondEnemy.hp)
+  {
+    return firstEnemy.hp < secondEnemy.hp;
+  }
+
   return firstEnemy.skill < secondEnemy.skill;
 }
 
 bool operator>(const Enemy &firstEnemy, const Enemy &secondEnemy)
 {
+  if (firstEnemy.damage != secondEnemy.damage)
+  {
+    return firstEnemy.damage > secondEnemy.damage;
+  }
+  else if (firstEnemy.hp != secondEnemy.hp)
+  {
+    return firstEnemy.hp > secondEnemy.hp;
+  }
+
   return firstEnemy.skill > secondEnemy.skill;
 }
